@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    display: inline-block;
+    color: inherit;
+}
+#root{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    padding: 1rem;
+    gap: 2rem;
+}
+.card{
+    width: 100%;
+    box-shadow: 2px 2px 8px 4px rgb(206, 206, 206);
+}
+.card__img{
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1.5;
+}
+.card__desc{
+    padding: 1rem;
+    text-align: right;
+}
