@@ -18,3 +18,24 @@ function showBooks(list){
     root.innerHTML = template;
 }
 showBooks(BOOKS);
+
+function filters(list){
+    const uniqueAuthors = [];
+    for (const item of list) {
+        if(!uniqueAuthors.includes(item.author)){
+            uniqueAuthors.push(item.author);
+        }
+    }
+    const authorTemplate = uniqueAuthors.map((item) =>
+    {
+        return`
+        <div>
+        <lable for ="${item}">${item}</lable>
+        <input value = "${item}" id = "${item}" type = "checkbox"></input>
+        </div>
+        `
+    }).join("");
+
+    filter.innerHTML += authorTemplate;
+}
+filters(BOOKS);
