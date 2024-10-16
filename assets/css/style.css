@@ -38,3 +38,11 @@ a {
   border: 1px solid black;
   text-align: right;
 }
+.title{
+  margin: .3rem;
+  text-decoration: underline rgb(138, 120, 120);
+}
+#title{
+  text-decoration: underline rgb(138, 120, 120);
+  margin-bottom: .3rem;
+}

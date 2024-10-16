@@ -38,6 +38,7 @@ function filtersAuthors(list) {
         `;
     })
     .join("");
+    filter.innerHTML += '<h3 id="title">:نویسنده کتاب</h3>';
   filter.innerHTML += authorTemplate;
 }
 
@@ -54,6 +55,7 @@ function filtersLanguage(list){
     <input id="${item}" value="${item}" type="checkbox"></input>
     </div>`;
   }).join("");
+  filter.innerHTML += '<h3 class="title">:زبان کتاب</h3>';
   filter.innerHTML += languageTemplate;
 }
 
@@ -71,6 +73,7 @@ function filtersGenre(list){
     <input value="${item}" id="${item}" type="checkbox"></input>
     </div>`
   }).join("");
+  filter.innerHTML += '<h3 class="title">:ژانر کتاب</h3>';
   filter.innerHTML += genreTemplate;
 }
 
