@@ -21,7 +21,7 @@ function showBooks(list) {
 }
 showBooks(BOOKS);
 
-function filters(list) {
+function filtersAuthors(list) {
   const uniqueAuthors = [];
   for (const item of list) {
     if (!uniqueAuthors.includes(item.author)) {
@@ -38,7 +38,43 @@ function filters(list) {
         `;
     })
     .join("");
-
   filter.innerHTML += authorTemplate;
 }
-filters(BOOKS);
+
+function filtersLanguage(list){
+  const uniqueLanguage = [];
+  for (const item of list) {
+     if(!uniqueLanguage.includes(item.language)){
+      uniqueLanguage.push(item.language);
+    }
+  }
+  const languageTemplate = uniqueLanguage.map((item) =>{
+    return `<div>
+    <lable for="${item}">${item}</lable>
+    <input id="${item}" value="${item}" type="checkbox"></input>
+    </div>`;
+  }).join("");
+  filter.innerHTML += languageTemplate;
+}
+
+function filtersGenre(list){
+  const uniqueGenre = [];
+  for (const item of list) {
+     if(!uniqueGenre.includes(item.genre)){
+      uniqueGenre.push(item.genre);
+    }
+  }
+  const genreTemplate = uniqueGenre.map((item) => {
+    return `
+    <div>
+    <lable for="${item}">${item}</lable>
+    <input value="${item}" id="${item}" type="checkbox"></input>
+    </div>`
+  }).join("");
+  filter.innerHTML += genreTemplate;
+}
+
+
+filtersAuthors(BOOKS);
+filtersLanguage(BOOKS);
+filtersGenre(BOOKS);
