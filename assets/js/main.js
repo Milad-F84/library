@@ -1,6 +1,9 @@
 //DOM NODES
 const root = document.getElementById("root");
 const filter = document.getElementById("filter");
+const selectedAuthors = [];
+let selectedGenres = [];
+let selectedLanguage = [];
 
 //functions
 function showBooks(list) {
@@ -34,7 +37,7 @@ function renderFilters(list) {
       return `
         <div>
         <lable for ="${item}">${item}</lable>
-        <input id = "${item}" type = "checkbox" value = "${item}"></input>
+        <input onchange="handleAuthorClick(event)" id = "${item}" type = "checkbox" value = "${item}"></input>
         </div>
         `;
     })
@@ -50,7 +53,7 @@ function renderFilters(list) {
     genreTemp += `
             <div>
         <lable for ="${genre}">${genre}</lable>
-        <input id = "${genre}" type = "checkbox" value = "${genre}"></input>
+        <input onchange="handleGenreClick(event)" id = "${genre}" type = "checkbox" value = "${genre}"></input>
         </div>
     `;
   }
@@ -65,7 +68,7 @@ function renderFilters(list) {
     languageTemp += `
                 <div>
         <lable for ="${language}">${language}</lable>
-        <input id = "${language}" type = "checkbox" value = "${language}"></input>
+        <input onchange="handleLanguageClick(event)" id = "${language}" type = "checkbox" value = "${language}"></input>
         </div>
     `;
   }
@@ -73,3 +76,55 @@ function renderFilters(list) {
   filter.innerHTML += languageTemp;
 }
 renderFilters(BOOKS);
+
+function handleAuthorClick(event) {
+  if (event.target.checked) {
+    selectedAuthors.push(event.target.value);
+  } else {
+    const targetIndex = selectedAuthors.findIndex(
+      (item) => item === event.target.value
+    );
+    selectedAuthors.splice(targetIndex, 1);
+  }
+  handleFilters();
+}
+
+function handleGenreClick(event) {
+  if (event.target.checked) {
+    selectedGenres.push(event.target.value);
+  } else {
+    selectedGenres = selectedGenres.filter(
+      (item) => item != event.target.value
+    );
+  }
+  handleFilters();
+}
+
+function handleLanguageClick(event) {
+  if (event.target.checked) {
+    selectedLanguage.push(event.target.value);
+  } else {
+    selectedLanguage = selectedLanguage.filter(
+      (item) => item != event.target.value
+    );
+  }
+  handleFilters();
+}
+
+function handleFilters() {
+  let result = BOOKS;
+
+  if (selectedAuthors.length) {
+    result = result.filter((book) => selectedAuthors.includes(book.author));
+  }
+
+  if (selectedGenres.length) {
+    result = result.filter((book) => selectedGenres.includes(book.genre));
+  }
+
+  if (selectedLanguage.length) {
+    result = result.filter((book) => selectedLanguage.includes(book.language));
+  }
+
+  showBooks(result);
+}
