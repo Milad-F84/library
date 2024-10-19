@@ -21,7 +21,8 @@ function showBooks(list) {
 }
 showBooks(BOOKS);
 
-function filtersAuthors(list) {
+function renderFilters(list) {
+  //unique authors
   const uniqueAuthors = [];
   for (const item of list) {
     if (!uniqueAuthors.includes(item.author)) {
@@ -33,51 +34,42 @@ function filtersAuthors(list) {
       return `
         <div>
         <lable for ="${item}">${item}</lable>
-        <input value = "${item}" id = "${item}" type = "checkbox"></input>
+        <input id = "${item}" type = "checkbox" value = "${item}"></input>
         </div>
         `;
     })
     .join("");
-    filter.innerHTML += '<h3 id="title">:نویسنده کتاب</h3>';
+  filter.innerHTML += '<h2 id="title">:نویسنده کتاب</h2>';
   filter.innerHTML += authorTemplate;
-}
 
-function filtersLanguage(list){
-  const uniqueLanguage = [];
-  for (const item of list) {
-     if(!uniqueLanguage.includes(item.language)){
-      uniqueLanguage.push(item.language);
-    }
+  //unique genres
+  const allGenres = list.map((item) => item.genre);
+  const uniqueGenres = new Set(allGenres);
+  let genreTemp = "";
+  for (const genre of uniqueGenres) {
+    genreTemp += `
+            <div>
+        <lable for ="${genre}">${genre}</lable>
+        <input id = "${genre}" type = "checkbox" value = "${genre}"></input>
+        </div>
+    `;
   }
-  const languageTemplate = uniqueLanguage.map((item) =>{
-    return `<div>
-    <lable for="${item}">${item}</lable>
-    <input id="${item}" value="${item}" type="checkbox"></input>
-    </div>`;
-  }).join("");
-  filter.innerHTML += '<h3 class="title">:زبان کتاب</h3>';
-  filter.innerHTML += languageTemplate;
-}
+  filter.innerHTML += '<h2 id="title">:ژانر کتاب</h2>';
+  filter.innerHTML += genreTemp;
 
-function filtersGenre(list){
-  const uniqueGenre = [];
-  for (const item of list) {
-     if(!uniqueGenre.includes(item.genre)){
-      uniqueGenre.push(item.genre);
-    }
+  //unique language
+  const allLanguage = list.map((item) => item.language);
+  const uniqueLanguage = new Set(allLanguage);
+  let languageTemp = "";
+  for (const language of uniqueLanguage) {
+    languageTemp += `
+                <div>
+        <lable for ="${language}">${language}</lable>
+        <input id = "${language}" type = "checkbox" value = "${language}"></input>
+        </div>
+    `;
   }
-  const genreTemplate = uniqueGenre.map((item) => {
-    return `
-    <div>
-    <lable for="${item}">${item}</lable>
-    <input value="${item}" id="${item}" type="checkbox"></input>
-    </div>`
-  }).join("");
-  filter.innerHTML += '<h3 class="title">:ژانر کتاب</h3>';
-  filter.innerHTML += genreTemplate;
+  filter.innerHTML += '<h2 id="title">:زبان کتاب</h2>';
+  filter.innerHTML += languageTemp;
 }
-
-
-filtersAuthors(BOOKS);
-filtersLanguage(BOOKS);
-filtersGenre(BOOKS);
+renderFilters(BOOKS);
