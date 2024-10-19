@@ -46,3 +46,28 @@ a {
   text-decoration: underline rgb(138, 120, 120);
   margin-bottom: .3rem;
 }
+#header{
+  background-color: antiquewhite;
+  padding: 1rem 10%;
+  position: relative;
+}
+.fav{
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  background-color: red;
+  width: 300px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.hidden{
+  display: none;
+}
+.fav-card{
+  display: flex;
+  gap: 1rem;
+}
+.fav-card img{
+  width: 150px;
+  border-radius: 8px;
+}
