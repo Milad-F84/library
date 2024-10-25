@@ -1,9 +1,17 @@
 //DOM NODES
 const root = document.getElementById("root");
 const filter = document.getElementById("filter");
+const favouriteContainer = document.querySelector(".fav");
+const favouriteButton = document.getElementById("favBtn");
 const selectedAuthors = [];
 let selectedGenres = [];
 let selectedLanguage = [];
+const savedFavBooks = JSON.parse(localStorage.getItem("favourite"));
+let favBooks = savedFavBooks;
+if (!savedFavBooks) {
+  favBooks = [];
+}
+showFaveBooks();
 
 //functions
 function showBooks(list) {
@@ -16,6 +24,11 @@ function showBooks(list) {
         <h3>${book.title}</h3>
         <span>${book.author}</span>
         <span>${book.published_date}</span>
+        ${
+          favBooks.includes(book.id)
+            ? ""
+            : `<button onclick="handleAddToFaves(${book.id})">افزودن به علاقه مندی ها</button>`
+        }
         </div>
         </div>`;
     })
@@ -128,3 +141,34 @@ function handleFilters() {
 
   showBooks(result);
 }
+
+function showFaveBooks() {
+  const favs = BOOKS.filter((item) => favBooks.includes(item.id));
+  const favTemplate = favs
+    .map((book) => {
+      return `
+    <div class="fav-card">
+    <img src="./assets/imgs/${book.imgSrc}" width="200px"/>
+    </div>
+    <div class="fav-card__desc">
+    <h4>${book.title}</h4>
+    </div>
+    `;
+    })
+    .join("");
+  favouriteContainer.innerHTML = favTemplate;
+}
+
+function handleAddToFaves(bookId) {
+  if (!favBooks.includes(bookId)) {
+    favBooks.push(bookId);
+  }
+  window.localStorage.setItem("favourite", JSON.stringify(favBooks));
+  showFaveBooks();
+  showBooks(BOOKS);
+}
+
+//EVENT
+favouriteButton.addEventListener("click", function () {
+  favouriteContainer.classList.toggle("hidden");
+});
