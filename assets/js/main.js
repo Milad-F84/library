@@ -27,7 +27,7 @@ function showBooks(list) {
         ${
           favBooks.includes(book.id)
             ? ""
-            : `<button onclick="handleAddToFaves(${book.id})">افزودن به علاقه مندی ها</button>`
+            : `<button class="card__btn" onclick="handleAddToFaves(${book.id})">افزودن به علاقه مندی ها</button>`
         }
         </div>
         </div>`;
@@ -149,10 +149,16 @@ function showFaveBooks() {
       return `
     <div class="fav-card">
     <img src="./assets/imgs/${book.imgSrc}" width="200px"/>
-    </div>
     <div class="fav-card__desc">
     <h4>${book.title}</h4>
+            ${
+          favBooks.includes(book.id)
+            ? `<button class="fav-card__btn" onclick="handleAddToFaves(${book.id})">حذف از علاقه مندی ها</button>`
+            : ""
+        }
     </div>
+    </div>
+
     `;
     })
     .join("");
@@ -164,6 +170,15 @@ function handleAddToFaves(bookId) {
     favBooks.push(bookId);
   }
   window.localStorage.setItem("favourite", JSON.stringify(favBooks));
+  showFaveBooks();
+  showBooks(BOOKS);
+}
+
+function handleRemoveFromFaves(bookId){
+  if(favBooks.includes(bookId)){
+    favBooks.splice(bookId);
+  }
+  console.log(favBooks);
   showFaveBooks();
   showBooks(BOOKS);
 }

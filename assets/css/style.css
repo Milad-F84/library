@@ -14,6 +14,9 @@ a {
   grid-template-columns: repeat(4, auto);
   padding: 1rem;
   gap: 2rem;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1,auto);
+  }
 }
 .card {
   width: 100%;
@@ -23,20 +26,40 @@ a {
   width: 100%;
   object-fit: cover;
   aspect-ratio: 1/1.5;
+  border-radius: 8px;
 }
 .card__desc {
   padding: 1rem;
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.card__btn{
+  background-color: lightgreen;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
 }
 .container {
   display: grid;
   grid-template-columns: auto 300px;
+  @media (max-width: 768px) {
+   display: flex;
+   justify-content: space-between; 
+  }
 }
 #filter {
   width: 100%;
   padding: 1rem 0.5rem;
-  border: 1px solid black;
+  border: 2px solid black;
   text-align: right;
+  height: fit-content;
+  border-radius: 10px;
+  margin-top: 6px;
+  box-shadow: 0 4px 6px rgb(0, 0, 0,1);
 }
 .title{
   margin: .3rem;
@@ -55,13 +78,17 @@ a {
   position: absolute;
   top: 100%;
   left: 10%;
-  background-color: red;
+  background-color: aliceblue;
   width: 300px;
   max-height: 70vh;
   overflow-y: auto;
 }
 #favBtn{
   cursor: pointer;
+  background-color:burlywood;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
 }
 .hidden{
   display: none;
@@ -73,4 +100,19 @@ a {
 .fav-card img{
   width: 150px;
   border-radius: 8px;
+}
+
+.fav-card__desc{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.fav-card__btn{
+  background-color: lightgreen;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
 }
