@@ -152,10 +152,10 @@ function showFaveBooks() {
     <div class="fav-card__desc">
     <h4>${book.title}</h4>
             ${
-          favBooks.includes(book.id)
-            ? `<button class="fav-card__btn" onclick="handleAddToFaves(${book.id})">حذف از علاقه مندی ها</button>`
-            : ""
-        }
+              favBooks.includes(book.id)
+                ? `<button class="fav-card__btn" onclick="handleRemoveFromFaves(${book.id})">حذف از علاقه مندی ها</button>`
+                : ""
+            }
     </div>
     </div>
 
@@ -174,11 +174,12 @@ function handleAddToFaves(bookId) {
   showBooks(BOOKS);
 }
 
-function handleRemoveFromFaves(bookId){
-  if(favBooks.includes(bookId)){
+function handleRemoveFromFaves(bookId) {
+  debugger;
+  if (favBooks.includes(bookId)) {
     favBooks.splice(bookId);
   }
-  console.log(favBooks);
+  window.localStorage.setItem("favourite", JSON.stringify(favBooks));
   showFaveBooks();
   showBooks(BOOKS);
 }
