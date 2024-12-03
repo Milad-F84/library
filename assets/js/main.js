@@ -48,8 +48,8 @@ function renderFilters(list) {
   const authorTemplate = uniqueAuthors
     .map((item) => {
       return `
-        <div>
-        <lable for ="${item}">${item}</lable>
+        <div class="flters-div">
+        <lable class="filters-item" for ="${item}">${item}</lable>
         <input onchange="handleAuthorClick(event)" id = "${item}" type = "checkbox" value = "${item}"></input>
         </div>
         `;
@@ -64,8 +64,8 @@ function renderFilters(list) {
   let genreTemp = "";
   for (const genre of uniqueGenres) {
     genreTemp += `
-            <div>
-        <lable for ="${genre}">${genre}</lable>
+            <div class="flters-div">
+        <lable class="filters-item" for ="${genre}">${genre}</lable>
         <input onchange="handleGenreClick(event)" id = "${genre}" type = "checkbox" value = "${genre}"></input>
         </div>
     `;
@@ -79,8 +79,8 @@ function renderFilters(list) {
   let languageTemp = "";
   for (const language of uniqueLanguage) {
     languageTemp += `
-                <div>
-        <lable for ="${language}">${language}</lable>
+                <div class="flters-div">
+        <lable class="filters-item" for ="${language}">${language}</lable>
         <input onchange="handleLanguageClick(event)" id = "${language}" type = "checkbox" value = "${language}"></input>
         </div>
     `;

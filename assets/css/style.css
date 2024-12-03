@@ -68,8 +68,11 @@ a {
   text-decoration: underline rgb(138, 120, 120);
 }
 #title{
-  text-decoration: underline rgb(138, 120, 120);
   margin-bottom: .3rem;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: red;
 }
 #header{
   background-color: antiquewhite;
@@ -117,4 +120,10 @@ a {
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
+}
+.filters-item{
+  font-weight: 600;
+}
+.flters-div{
+  margin-bottom: 5px;
 }
