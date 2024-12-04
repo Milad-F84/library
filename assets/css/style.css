@@ -21,6 +21,7 @@ a {
 .card {
   width: 100%;
   box-shadow: 2px 2px 8px 4px rgb(206, 206, 206);
+  border-radius: 8px;
 }
 .card__img {
   width: 100%;
